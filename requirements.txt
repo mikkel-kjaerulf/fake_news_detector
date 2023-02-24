@@ -3,6 +3,7 @@ jupyter==1.0.0
 pandas==1.5.3
 clean-text==0.6.0
 unidecode==1.3.6
+nltk==3.8.1
 
 # used for exporting to pdf
 pyppeteer==1.0.2
