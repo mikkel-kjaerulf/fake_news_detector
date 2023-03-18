@@ -1,4 +1,5 @@
 #########################################
+#               Summary
 #
 # The following file contains all the
 # higher order functions used throughout
@@ -6,7 +7,13 @@
 # of the notebook order.
 #
 #########################################
-
+#               Instructions
+#
+# Write higher-order functions in nb.
+# When it works as intended, copy paste
+# in here, and import the function. 
+#
+#########################################
 
 #### Modules ####
 
