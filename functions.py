@@ -91,12 +91,6 @@ def to_list():
 
 # Call this function on your dataframe, to pre-process CLEANED data (tokenize, remove stopwords etc.)
 def preprocess(dataframe):
-    
-    # Failsafe. Raises an error in case we are running twice // try to feed it with the tokenized string rather than a list.
-    try:
-        assert isinstance(dataframe['content'][0], str)
-    except AssertionError:
-        raise ValueError("Input should be a string")
 
     # Tokenize 'content' column
     #print("Tokenizing...")
