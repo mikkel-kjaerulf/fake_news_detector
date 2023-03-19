@@ -13,6 +13,7 @@
 # DataFrames
 import numpy as np
 import pandas as pd
+from cleantext import clean
 
 # Ploting
 import matplotlib.pyplot as plt
