@@ -43,10 +43,6 @@ white_space = re.compile(r"[\s]+|\n+")
 Cleans the text from mail/url/date/whitespace/punctuation
 """
 def clean_string(st):
-    try:
-        assert isinstance(st, str)
-    except:
-        raise ValueError("Input should be a string. Dataframe may already be tokenized.")
     s1 = st.lower()
     s2 = mail_pattern.sub("mail", s1)
     s3 = url_pattern.sub("url", s2)
