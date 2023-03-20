@@ -25,6 +25,7 @@ from nltk.stem.porter import *
 
 # Other
 import time
+import random
 
 
 #### PRE-PROCESSING FUNCTIONS ####
@@ -39,8 +40,16 @@ punct_remove = re.compile(r"[^\w\s]+")
 white_space = re.compile(r"[\s]+|\n+")
 
 
-def load_million_clean_samples(csv): 
-    return
+#Indhenter et sample på ca. 1,45M artikler, meget tidseffektivt
+def get_1_point_5_M_sample(csvstring: str):
+    random.seed(0)
+    n = 11000000 #number of records in file (excludes header)
+    s = 1900000 #desired sample size
+    skip = sorted(random.sample(range(1,n+1),n-s))
+    # Read the CSV file, skipping the randomly selected rows
+    sampled_data = pd.read_csv(csvstring, on_bad_lines='skip', skiprows=skip, index_col=0)
+    sampled_data = sampled_data.reset_index()
+    return sampled_data
 
 
 
