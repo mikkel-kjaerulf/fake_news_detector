@@ -39,6 +39,12 @@ punct_remove = re.compile(r"[^\w\s]+")
 white_space = re.compile(r"[\s]+|\n+")
 
 
+def load_million_clean_samples(csv): 
+    return
+
+
+
+
 """
 Cleans the text from mail/url/date/whitespace/punctuation
 """
