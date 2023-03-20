@@ -51,6 +51,21 @@ def get_1_point_5_M_sample(csvstring: str):
     sampled_data = sampled_data.reset_index()
     return sampled_data
 
+#Fjerner de artikler vi ikke skal bruge, og klassificerer alt som reliable/fake
+def remove_labels_and_unusable_entries(df): 
+    #klassificerer alle de artikler vi vil bruge ind i reliable eller fake
+    df.type = df.type.replace({'political': 'reliable', 'junksci': 'fake', 'bias' : 'fake', 'satire': 'fake', 'conspiracy': 'fake', 'rumor': 'fake', 'unreliable' : 'fake', 'clickbait': 'fake', 'hate': 'fake'})
+    #fjerner artikler som har volapyk types (inklusiv 'unknown')
+    df = df[(df.type == 'reliable') |(df.type == 'fake')]
+    #fjerner artikler som ikke har nogen type
+    df = df[df.type.notnull()]
+    #fjerner artikler uden content
+    df = df[df.content.notnull()]
+    #fjerner duplerede artikler, ud over en enkelt
+    df = df.drop_duplicates(subset = 'content', keep = 'last')
+    #reset index gør, at hvis vi fjerner artikle [2], bliver artikel [3] rykket ned på index [2] osv. dernedad.
+    df = df.reset_index()
+    return df 
 
 
 
