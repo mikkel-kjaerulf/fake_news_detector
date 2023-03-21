@@ -44,3 +44,38 @@ def clean_dataframe(dataframe):
     dataframe['content'] = dataframe['content'].apply(clean_single_string)
     end = time.time()
     print("cleaning took " + str(end - start) + " seconds")
+
+
+#Klassificerer alt som reliable/fake
+def binary_labels(df): 
+    #klassificerer alle de artikler vi vil bruge ind i reliable eller fake
+    df.type = df.type.replace({'political': 'reliable', 'junksci': 'fake', 'bias' : 'fake', 'satire': 'fake', 'conspiracy': 'fake', 'rumor': 'fake', 'unreliable' : 'fake', 'clickbait': 'fake', 'hate': 'fake'})
+    return df
+
+#Fjerner alle de artikler vi ikke skal bruges. NB: SKAL kaldes på en dataframe, som allerede har været igennem binary_labels
+def remove_bad_articles(df): 
+    #fjerner artikler som har volapyk types (inklusiv 'unknown')
+    df = df[(df.type == 'reliable') |(df.type == 'fake')]
+    #fjerner artikler som ikke har nogen type
+    df = df[df.type.notnull()]
+    #fjerner artikler uden content
+    df = df[df.content.notnull()]
+    #fjerner duplerede artikler, ud over en enkelt
+    df = df.drop_duplicates(subset = 'content', keep = 'last')
+    #fjerner de artikler som ikke indeholder mindst et latinsk bogstav
+    df = df[df.content.str.contains('[a-z]')]
+    #reset index gør, at hvis vi fjerner artikle [2], bliver artikel [3] rykket ned på index [2] osv. dernedad.
+    df = df.reset_index()
+    return df 
+
+#Returnerer et dictionary, som repræsenterer den procentmæssige fordeling af typerne i et dataframe
+def labelperc(df): 
+    labeldict = {}
+    for i in df.type: 
+        if i in labeldict: 
+            labeldict[i] +=1
+        else: 
+            labeldict[i] = 1
+    for i in labeldict: 
+        labeldict[i] = labeldict[i]/len(df)*100
+    return labeldict
