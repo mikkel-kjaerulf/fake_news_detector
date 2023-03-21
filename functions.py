@@ -86,6 +86,16 @@ def to_list():
         return list(it)
     return turn_to_list
 
+# https://stackoverflow.com/questions/45447848/check-for-words-from-list-and-remove-those-words-in-pandas-dataframe-column 
+# Tænker at dette kan bruges til at fjerne de ord der kun optræder mindre end 3 gange. 
+# Ved først at lave en liste med alle de ord der skal fjernes, og derefter bruge replace() til at fjerne dem.
+""" 
+def rem_lead_whitespace():
+    def remove (string):
+        return string.lstrip()
+    return remove
+ """
+
 # Call this function on your dataframe, to pre-process CLEANED data (tokenize, remove stopwords etc.)
 def preprocess(dataframe):
 
