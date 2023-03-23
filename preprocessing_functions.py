@@ -19,23 +19,24 @@ import time
 Tokenizing, stemming, NLTK lib 
 """
 
-def remove_english_stopwords(stopwords):
+def stopwords_remover():
+    stop = stopwords.words('english')
     def remove_stopwords(tokenlist):
-        return filter(lambda x : x not in stopwords, tokenlist)
+        return filter(lambda x : x not in stop, tokenlist)
     return remove_stopwords
 
-def stem_tokens():
+def token_stemmer():
     stemmer = PorterStemmer()
     def stem_tokenlist(tokenlist):
         return map(stemmer.stem, tokenlist)
     return stem_tokenlist
 
-def tokenize():
-    def tokenize_text(s):
-        return list((map(nltk.word_tokenize, s)))
-    return tokenize_text
+def tokenizer():
+    def tokenize(str):
+        return nltk.word_tokenize(str)
+    return tokenize
 
-def to_list():
+def list_converter():
     def turn_to_list(it):
         return list(it)
     return turn_to_list
@@ -46,12 +47,12 @@ def preprocess(dataframe):
     # Tokenize 'content' column
     #print("Tokenizing...")
     start = time.time()
-    dataframe['content'] = dataframe['content'].apply(nltk.word_tokenize)
+    dataframe['content'] = dataframe['content'].apply(tokenizer)
     end = time.time()
     print("Tokenizing took " + str(end - start) + " seconds")
 
     start = time.time()
-    dataframe['content'] = dataframe['content'].apply(remove_english_stopwords(stopwords.words('english')))
+    dataframe['content'] = dataframe['content'].apply(stopwords_remover(stopwords.words('english')))
     end = time.time()
     print("Removing stopwords took " + str(end - start) + " seconds")
 
@@ -61,6 +62,6 @@ def preprocess(dataframe):
     print("Stemming took " + str(end - start) + " seconds")
 
     start = time.time()
-    dataframe['content'] = dataframe['content'].apply(to_list())
+    dataframe['content'] = dataframe['content'].apply(list_converter())
     end = time.time()
     print("Converting to list took " + str(end - start) + " seconds")
