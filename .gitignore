@@ -1,6 +1,10 @@
 # no data
 *.csv
 /data
+*.pkl
+*.txt
+/meta_data
+*.joblib
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
