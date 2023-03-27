@@ -22,13 +22,13 @@ Tokenizing, stemming, NLTK lib
 def stopwords_remover():
     stop = stopwords.words('english')
     def remove_stopwords(tokenlist):
-        return filter(lambda x : x not in stop, tokenlist)
+        return list(filter(lambda x : x not in stop, tokenlist))
     return remove_stopwords
 
 def token_stemmer():
     stemmer = PorterStemmer()
     def stem_tokenlist(tokenlist):
-        return map(stemmer.stem, tokenlist)
+        return [stemmer.stem(token) for token in tokenlist]
     return stem_tokenlist
 
 def tokenizer():

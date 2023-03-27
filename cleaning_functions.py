@@ -39,8 +39,8 @@ def clean_single_string(st):
 
 # Call this function to clean the dataframe, BEFORE tokenizing.
 def clean_dataframe(dataframe):
-    start = time.time()
+    #start = time.time()
     dataframe['content'] = dataframe['content'].apply(clean_single_string)
-    end = time.time()
-    print("cleaning took " + str(end - start) + " seconds")
+    #end = time.time()
+    #print("cleaning took " + str(end - start) + " seconds")
 
