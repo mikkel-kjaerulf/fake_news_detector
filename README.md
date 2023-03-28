@@ -1,8 +1,4 @@
 # fake_news_detector
 ## Running the notebook
-Running the main notebook works 
-
-
-## Converting to pdf
-To convert notebook to pdf run "jupyter nbconvert --to webpdf --allow-chromium-download notebookname"
-this requires installation of nbconvert and pyppeteer
+explore.ipynb is a notebook documenting our exploratory data analysis. main.ipynb documents our 
+main cleaning, preprocessing and model training/evalutaion pipeline.
