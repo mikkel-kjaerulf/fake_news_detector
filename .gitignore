@@ -1,9 +1,9 @@
 # no data
 *.csv
-data/
 *.pkl
 *.txt
 meta_data/
+data/
 *.joblib
 *.tsv
 liar/
