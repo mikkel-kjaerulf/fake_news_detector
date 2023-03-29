@@ -6,6 +6,7 @@
 /meta_data
 *.joblib
 *.tsv
+/liar
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
