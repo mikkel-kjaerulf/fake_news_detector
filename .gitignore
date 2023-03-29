@@ -1,12 +1,12 @@
 # no data
 *.csv
-/data
+data/
 *.pkl
 *.txt
-/meta_data
+meta_data/
 *.joblib
 *.tsv
-/liar
+liar/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
